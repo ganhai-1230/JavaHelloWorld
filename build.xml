@@ -32,6 +32,19 @@
         <java jar="${jar.dir}/${ant.project.name}.jar" fork="true"/>
     </target>
 
+    <target name="junit" depend="jar">
+        <junit printsummary="yes">
+            <calsspath>
+                <path refid="classpath"/>
+                <path refid="application"/>
+            </calsspath>
+
+            <batchtest fork="yes">
+                <fileset dir="${src.dir}" includes="*Test.java"/>
+            </batchtest>
+        </junit>
+    </target>
+
     <target name="clean-build" depends="clean,jar"/>
 
     <target name="main" depends="clean,run"/>
